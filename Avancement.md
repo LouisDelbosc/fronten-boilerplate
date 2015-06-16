@@ -8,6 +8,11 @@
 
 #Need to be done:
 
+- make user form
 - make stores and actions
+ - action to check if the logged in is good
+ - loginstore
+ - userstore
+ - actions to change user data
 - move states from Login to LoginStore
 - try to clean state in components
