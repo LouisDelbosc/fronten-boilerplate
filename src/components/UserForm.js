@@ -4,21 +4,15 @@ var UserForm = React.createClass({
 
     getInitialState: function() {
         return {
-            infoUser: [
-                {
-                    FirstName: 'jean jacques'
-                }
-            ]
+            infoUser: { 
+                FirstName: 'jean jacques',
+                LastName: 'Rousseau',
+                UserName: 'jjr',
+                Email: 'jjr@jjr.com',
+                InvoiceAddr: 'add invoice',
+                ShipAddr: 'ship addr'
+            }
         };
-    },
-
-    componentDidMount: function() {
-        console.log('oui');
-        /*
-        console.log(this.state);
-        console.log(this.state.infoUser);
-        console.log(this.state.infoUser.FirstName);
-        */
     },
 
     render() {

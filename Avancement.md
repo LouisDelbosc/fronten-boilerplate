@@ -14,7 +14,7 @@
 
 #Need to be done:
 
-- DEBUG the UserForm
+- making the action + store for the userPage
 - making the Login page the default page + redirect
 - put a willTransitionTo in login
  - bool isLogged
