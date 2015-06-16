@@ -2,14 +2,9 @@ import App from './components/App';
 import Home from './components/Home';
 import About from './components/About';
 import Login from './components/Login';
-//import AuthStore from './stores/AuthStore';
 import React from 'react';
 import Router from 'react-router';
 import {DefaultRoute, Route, Routes} from 'react-router';
-
-function transitionTest() {
-    console.log('test allô');
-}
 
 let routes = (
     <Route name="app" path="/" handler={App} >

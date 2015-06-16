@@ -10,7 +10,7 @@
 
 - make user form
 - make stores and actions
- - action to check if the logged in is good
+ - action to check if he's logged in
  - loginstore
  - userstore
  - actions to change user data
