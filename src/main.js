@@ -14,7 +14,7 @@ function transitionTest() {
 let routes = (
     <Route name="app" path="/" handler={App} >
         <Route name="about" handler={About} />
-        <Route name="home" handler={Home} onEnter={transitionTest} />
+        <Route name="home" handler={Home} />
         <DefaultRoute name="login" handler={Login} />
     </Route>
 );
