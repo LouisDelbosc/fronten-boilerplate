@@ -2,40 +2,36 @@ import React from 'react';
 import UserForm from './UserForm';
 import MachineList from './MachineList';
 import Membership from './Membership';
+import UserActions from '../actions/UserActions';
+import UserStore from '../stores/UserStore'
 
 var UserPage = React.createClass({
+
+    /*
+     * Getting stuff from OUTSIDE of the component
+     */
+    // getting state from UserStore
     getInitialState: function() {
-        // should get state from store
+        var _infoUser = UserStore.getInfoUser();
+        var _infoMachine = UserStore.getInfoMachine();
         return {
-            // everything @ get /users/{uid}
-            infoUser: { 
-                FirstName: 'jean jacques',
-                LastName: 'Rousseau',
-                UserName: 'jjr',
-                Email: 'jjr@jjr.com',
-                InvoiceAddr: 'add invoice',
-                ShipAddr: 'ship addr'
-            },
-            // everything @ get /users/{uid}/machinepermissions
-            infoMachine: [
-                {
-                    Id: '1',
-                    Name: 'ouioui',
-                    Shortname: 'oui',
-                    Description: 'du oui à foison'
-                },
-                {
-                    Id: '2',
-                    Name: 'ouinon',
-                    Shortname: 'non',
-                    Description: 'ok'
-                }
-            ]
+            infoUser: _infoUser,
+            infoMachine: _infoMachine
         };
     },
 
+    // Pass the responsabilité to the store via the action
+    handleSubmit() {
+        console.log(this.state);
+        //UserActions.submitState(this.state.infoUser);
+    },
+
+    /*
+     * INSIDE the component
+     */
     // Change the state of the input related
     handleChangeForm(event) {
+        // Create a temporary state to replace the old one
         var tmpState = this.state.infoUser;
         tmpState[event.target.id] = event.target.value;
         this.setState({
@@ -43,10 +39,14 @@ var UserPage = React.createClass({
         });
     },
 
+
     render() {
         return (
             <div className="userPage" >
-                <UserForm info={this.state.infoUser} func={this.handleChangeForm} />
+                <UserForm info={this.state.infoUser} 
+                    func={this.handleChangeForm}
+                    submit={this.handleSubmit}
+                />
                 <MachineList info={this.state.infoMachine} />
                 <Membership />
             </div>

@@ -1,7 +1,7 @@
 import UserStore from '../stores/UserStore';
 
 var LoginActions = {
-    submitForm: function(content) {
+    submitLoginForm: function(content) {
         console.log(content);
     }
 };

@@ -1,8 +1,24 @@
 import React from 'react';
+
 import LoginActions from '../actions/LoginActions';
 
 var Login = React.createClass({
 
+    /*
+     * Getting stuff from OUTSIDE of the component
+     */
+    // Sending the form
+    handleSubmit: function(event) {
+        event.preventDefault();
+        //LoginActions.submitLoginForm(this.state);
+        console.log(this.state);
+        this.clearAndFocus();
+    },
+
+    /*
+     * INSIDE the component
+     */
+    // Change the state of the input related
     getInitialState: function() {
         return {
             username: '',
@@ -23,16 +39,9 @@ var Login = React.createClass({
         });
     },
 
-    // Sending the form
-    handleSubmit: function(event) {
-        event.preventDefault();
-        LoginActions.submitForm(this.state);
-        this.clearAndFocus();
-    },
-
-    render: function() {
+    render() {
         return (
-            <div classname="login" >
+            <div className="login" >
                 <p>Logging page</p>
                 <form onSubmit={this.handleSubmit} >
                     <input 
