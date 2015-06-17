@@ -11,18 +11,12 @@ var Login = React.createClass({
     },
 
     // To save Username and password before sending them
-    handleNameChange: function(e) {
+    handleChange: function(e) {
         this.setState({
-            username: e.target.value
+            [e.target.name]: e.target.value
         });
+        console.log(this.state);
     },
-
-    handlePasswordChange: function(e) {
-        this.setState({
-            password: e.target.value
-        });
-    },
-
     // Clear the state before sending the form
     clearAndFocus: function() {
         this.setState({username: '', password: ''}, function() {
@@ -44,15 +38,17 @@ var Login = React.createClass({
                 <form onSubmit={this.handleSubmit} >
                     <input 
                         ref="name" 
+                        name="username"
                         value={this.state.username}
-                        onChange={this.handleNameChange}
+                        onChange={this.handleChange}
                         placeholder="username" 
                     />
                     <input
                         type="password" 
+                        name="password"
                         ref="password" 
                         value={this.state.password}
-                        onChange={this.handlePasswordChange}
+                        onChange={this.handleChange}
                         placeholder="password" 
                     />
                     <button type="submit" > Submit </button>
