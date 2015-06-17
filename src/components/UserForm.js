@@ -2,48 +2,41 @@ import React from 'react';
 
 var UserForm = React.createClass({
 
-    getInitialState: function() {
-        return {
-            infoUser: { 
-                FirstName: 'jean jacques',
-                LastName: 'Rousseau',
-                UserName: 'jjr',
-                Email: 'jjr@jjr.com',
-                InvoiceAddr: 'add invoice',
-                ShipAddr: 'ship addr'
-            }
-        };
+    handleSubmit() {
+        // should sent value to useractions
+        console.log('submitting stuff');
     },
 
     render() {
         return (
             <div className="userForm" >
-                <form >
+                <form onSubmit={this.handleSubmit} >
                     <input type="text"
-                        value={this.state.infoUser.FirstName}
+                        value={this.props.info.FirstName}
                         ref="firstname"
                     />
                     <input type="text"
-                        value={this.state.infoUser.LastName}
+                        value={this.props.info.LastName}
                         ref="lastname"
                     />
                     <input type="text"
-                        value={this.state.infoUser.UserName}
+                        value={this.props.info.UserName}
                         ref="username"
-                    />
-                    <input type="text"
-                        value={this.state.infoUser.Email}
-                        ref="email"
                     />
                     <br />
                     <input type="text"
-                        value={this.state.infoUser.InvoiceAddr}
+                        value={this.props.info.Email}
+                        ref="email"
+                    />
+                    <input type="text"
+                        value={this.props.info.InvoiceAddr}
                         ref="invoiceAddr"
                     />
                     <input type="text"
-                        value={this.state.infoUser.ShipAddr}
+                        value={this.props.info.ShipAddr}
                         ref="shipAddr"
                     />
+                    <br />
                     <input type="password"
                         ref="password"
                     />

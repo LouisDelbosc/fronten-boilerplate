@@ -5,7 +5,17 @@ import Membership from './Membership';
 
 var UserPage = React.createClass({
     getInitialState: function() {
+        // should get state from store
         return {
+            // everything @ get /users/{uid}
+            infoUser: { 
+                FirstName: 'jean jacques',
+                LastName: 'Rousseau',
+                UserName: 'jjr',
+                Email: 'jjr@jjr.com',
+                InvoiceAddr: 'add invoice',
+                ShipAddr: 'ship addr'
+            },
             // everything @ get /users/{uid}/machinepermissions
             infoMachine: [
                 {
@@ -27,7 +37,7 @@ var UserPage = React.createClass({
     render() {
         return (
             <div className="userPage" >
-                <UserForm />
+                <UserForm info={this.state.infoUser} />
                 <MachineList info={this.state.infoMachine} />
                 <Membership />
             </div>
