@@ -35,8 +35,7 @@ var UserPage = React.createClass({
     },
 
     handleChangeForm(value, ref) {
-        //console.log(this.state.infoUser[ref]);
-        //console.log(value);
+        console.log(value);
         console.log(ref);
     },
 

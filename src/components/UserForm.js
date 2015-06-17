@@ -2,9 +2,8 @@ import React from 'react';
 
 var UserForm = React.createClass({
 
-    handleChangeForm(e) {
-        console.log(e.target);
-        this.props.func(e.target.value, e.target.qq);
+    handleChangeForm(info) {
+        this.props.func(info.key, info.value);
     },
 
     handleSubmit() {
@@ -19,24 +18,23 @@ var UserForm = React.createClass({
             tmp['key'] = data;
             tmp['value'] = this.props.info[data];
             infoUserTmp.push(tmp);
-            console.log(tmp);
         }
+        console.log(infoUserTmp);
         var NodeInput = infoUserTmp.map(function(info) {
             return (
                 <input type="text" placeholder={info.value} 
+                    onChange={this.handleChangeForm.bind(this, info)}
                 />
             );
-        });
+        }, this);
         return (
             <div className="userForm" >
                 <form>
                     {NodeInput}
                     <br />
                     <input type="password"
-                        qq="password"
                     />
                     <input type="password"
-                        qq="passwordConfirmation"
                     />
                     <button>Okay</button>
                 </form>
