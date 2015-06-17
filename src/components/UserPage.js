@@ -34,9 +34,13 @@ var UserPage = React.createClass({
         };
     },
 
-    handleChangeForm(value, ref) {
-        console.log(value);
-        console.log(ref);
+    // Change the state of the input related
+    handleChangeForm(event) {
+        var tmpState = this.state.infoUser;
+        tmpState[event.target.id] = event.target.value;
+        this.setState({
+            infoUser: tmpState
+        });
     },
 
     render() {

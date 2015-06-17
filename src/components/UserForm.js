@@ -2,8 +2,8 @@ import React from 'react';
 
 var UserForm = React.createClass({
 
-    handleChangeForm(info) {
-        this.props.func(info.key, info.value);
+    handleChangeForm(event) {
+        this.props.func(event);
     },
 
     handleSubmit() {
@@ -19,11 +19,11 @@ var UserForm = React.createClass({
             tmp['value'] = this.props.info[data];
             infoUserTmp.push(tmp);
         }
-        console.log(infoUserTmp);
         var NodeInput = infoUserTmp.map(function(info) {
             return (
                 <input type="text" placeholder={info.value} 
-                    onChange={this.handleChangeForm.bind(this, info)}
+                    id={info.key}
+                    onChange={this.handleChangeForm}
                 />
             );
         }, this);

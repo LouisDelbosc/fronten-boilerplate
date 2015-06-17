@@ -15,7 +15,6 @@ var Login = React.createClass({
         this.setState({
             [e.target.name]: e.target.value
         });
-        console.log(this.state);
     },
     // Clear the state before sending the form
     clearAndFocus: function() {
