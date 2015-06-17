@@ -34,10 +34,16 @@ var UserPage = React.createClass({
         };
     },
 
+    handleChangeForm(value, ref) {
+        //console.log(this.state.infoUser[ref]);
+        //console.log(value);
+        console.log(ref);
+    },
+
     render() {
         return (
             <div className="userPage" >
-                <UserForm info={this.state.infoUser} />
+                <UserForm info={this.state.infoUser} func={this.handleChangeForm} />
                 <MachineList info={this.state.infoMachine} />
                 <Membership />
             </div>

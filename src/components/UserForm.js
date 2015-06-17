@@ -2,46 +2,41 @@ import React from 'react';
 
 var UserForm = React.createClass({
 
+    handleChangeForm(e) {
+        console.log(e.target);
+        this.props.func(e.target.value, e.target.qq);
+    },
+
     handleSubmit() {
         // should sent value to useractions
         console.log('submitting stuff');
     },
 
     render() {
+        var infoUserTmp = new Array();
+        for(var data in this.props.info ) {
+            var tmp = {};
+            tmp['key'] = data;
+            tmp['value'] = this.props.info[data];
+            infoUserTmp.push(tmp);
+            console.log(tmp);
+        }
+        var NodeInput = infoUserTmp.map(function(info) {
+            return (
+                <input type="text" placeholder={info.value} 
+                />
+            );
+        });
         return (
             <div className="userForm" >
-                <form onSubmit={this.handleSubmit} >
-                    <input type="text"
-                        value={this.props.info.FirstName}
-                        ref="firstname"
-                    />
-                    <input type="text"
-                        value={this.props.info.LastName}
-                        ref="lastname"
-                    />
-                    <input type="text"
-                        value={this.props.info.UserName}
-                        ref="username"
-                    />
-                    <br />
-                    <input type="text"
-                        value={this.props.info.Email}
-                        ref="email"
-                    />
-                    <input type="text"
-                        value={this.props.info.InvoiceAddr}
-                        ref="invoiceAddr"
-                    />
-                    <input type="text"
-                        value={this.props.info.ShipAddr}
-                        ref="shipAddr"
-                    />
+                <form>
+                    {NodeInput}
                     <br />
                     <input type="password"
-                        ref="password"
+                        qq="password"
                     />
                     <input type="password"
-                        ref="passwordConfirmation"
+                        qq="passwordConfirmation"
                     />
                     <button>Okay</button>
                 </form>
