@@ -12,7 +12,8 @@ let routes = (
         <Route name="about" handler={About} />
         <Route name="home" handler={Home} />
         <Route name="user" handler={UserPage} />
-        <DefaultRoute name="login" handler={Login} />
+        <Route name="login" handler={Login} />
+        <DefaultRoute handler={Home} />
     </Route>
 );
 

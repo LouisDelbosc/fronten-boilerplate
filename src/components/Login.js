@@ -1,5 +1,6 @@
 import React from 'react';
 
+import UserStore from '../stores/UserStore';
 import LoginActions from '../actions/LoginActions';
 
 var Login = React.createClass({
@@ -7,6 +8,15 @@ var Login = React.createClass({
     /*
      * Getting stuff from OUTSIDE of the component
      */
+
+    statics: {
+        willTransitionTo(transition) {
+            if(UserStore.getIsLogged()) {
+                transition.redirect('/home');
+            }
+        }
+    },
+
     // Sending the form
     handleSubmit: function(event) {
         event.preventDefault();

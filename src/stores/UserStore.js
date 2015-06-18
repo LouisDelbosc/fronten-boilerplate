@@ -1,5 +1,7 @@
 var UserStore = {
     _state: {
+        userID: 0,
+        failToLogin: false,
         isLogged: false,
         // everything @ get /users/{uid}
         infoUser: { 
@@ -21,40 +23,70 @@ var UserStore = {
         ]
     },
 
-    submitLoginForm: function(contentForm) {
-        /*
+   /*
+    * To make request from the server
+    * _url: the url for the API call
+    * nameState: the name of the state you'll modify
+    * _data: the data you're sending
+    * _type: methods you use ('GET', 'POST' etc ...)
+    *
+    */
+    getDataFromServer(_url, stateName, _dataToSend, _type, functionIfFail) {
         $.ajax({
-            url: this.state.url.userLogin,
+            url: _url,
             dataType: 'json',
-            type: 'POST',
-            data: contentForm,
-            success: function(response) {
-                this._state.UserId = reponse.UserId;
-            },
+            type: _type,
+            data: _dataToSend,
+            success: function(data) {
+                this._state[stateName] = data;
+            }.bind(this),
             error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            },
+                console.error(_url, status, err.toString());
+                functionIfFail();
+            }.bind(this),
+        });
+    },
+
+    submitLoginFormToServer(loginInfo) {
+        /*
+        var _dataToSend = loginInfo,
+            _url = '/users/login',
+            stateName = 'isLogged',
+            _type = 'POST';
+        getDataFromServer(_url, stateName, _dataToSend, _type, function() {
+            this._state.failToLogin = true;
         });
         */
-       console.log('login submit done');
-       console.log(contentForm);
-   },
+       this._state.isLogged = true;
+        this.onChange();
+    },
 
-   //try to make it more general
-   gettingUserFromServer(uid) {
-       $.ajax({
-           url: 'API CALL', // /users/{uid}
-           dataType: 'json',
-           type:'GET',
-           data: uid,
-           success: function(User) {
-               this._state.infoUser = User;
-           },
-           error: function(xhr, status, err) {
-               console.error('api call', status, err.toString());
-           },
-       });
-   },
+    logoutFromServer() {
+        $.ajax({
+            url: '/users/logout',
+            dataType: 'json',
+            cache: false,
+            success: function() {
+                this.cleanState(); // TODO: create the function
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error('/users/logout', status, err.toString())
+            }.bind(this)
+        });
+    },
+
+    submitStateToServer(userState) {
+        formatUserState(userState); // TODO: create the function
+        var _url = '/api/users/' + this._state.userID,
+            dataToSend = this._state.infoUser,
+            _type = 'PUT';
+        getDataFromServer(_url, dataToSend, _type, function() {});
+    },
+
+    // To get the User information for the server after login in
+    getUserStateFromServer(){
+        //getting the initial set of data from the server with the UID
+    },
 
     // Getter to the state
     getIsLogged: function() {
@@ -69,16 +101,8 @@ var UserStore = {
         return this._state.infoMachine;
     },
 
-    // Need to format the infoUser data correctly
-    // So it is recognize by the API
-    submitState(userstate) {
-        var loggedIn = this.state.isLogged;
-        console.log('from user store');
-        loggedIn = true;
-        console.log(loggedIn);
-        console.log(this.state.isLogged);
-        console.log(userstate);
-    }
+    onChange() {}
 
 };
+
 module.exports = UserStore;

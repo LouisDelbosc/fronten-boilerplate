@@ -2,9 +2,14 @@ import UserStore from '../stores/UserStore'
 
 var UserActions = {
 
-    submitState(userstate){
-        UserStore.submitState(userstate);
+    submitState(userState){
+        UserStore.submitStateToServer(userState);
+    },
+
+    logout() {
+        UserStore.logoutFromServer();
     }
+
 };
 
 module.exports = UserActions;

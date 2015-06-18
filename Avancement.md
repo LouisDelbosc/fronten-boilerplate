@@ -13,13 +13,13 @@
  - loading the machinelist 
 - letting the upper hand from the userpage to the userstore
 - login page complete (miss only the right transition with the router)
+- making the action + store for the userPage
 
 #Need to be done:
 
 - making the loginsubmit do the outside request
 - make logout related stuff
 - check the actions to see if it's the same
-- making the action + store for the userPage
 - finishing the store with calling the API
 - making the Login page the default page + redirect
 - put a willTransitionTo in login
