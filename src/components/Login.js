@@ -1,9 +1,12 @@
 import React from 'react';
+import {Navigation} from 'react-router';
 
 import UserStore from '../stores/UserStore';
 import LoginActions from '../actions/LoginActions';
 
 var Login = React.createClass({
+
+    mixins: [ Navigation ],
 
     /*
      * Getting stuff from OUTSIDE of the component
@@ -14,6 +17,9 @@ var Login = React.createClass({
         event.preventDefault();
         LoginActions.submitLoginForm(this.state);
         this.clearAndFocus();
+        if( UserStore.getIsLogged ) {
+            this.transitionTo('/');
+        }
     },
 
     /*
