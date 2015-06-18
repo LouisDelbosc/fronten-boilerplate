@@ -22,8 +22,8 @@ var UserPage = React.createClass({
 
     // Pass the responsabilité to the store via the action
     handleSubmit() {
-        console.log(this.state);
-        //UserActions.submitState(this.state.infoUser);
+        console.log('UserPage');
+        UserActions.submitState(this.state.infoUser);
     },
 
     /*

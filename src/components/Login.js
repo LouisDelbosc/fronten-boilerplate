@@ -10,8 +10,7 @@ var Login = React.createClass({
     // Sending the form
     handleSubmit: function(event) {
         event.preventDefault();
-        //LoginActions.submitLoginForm(this.state);
-        console.log(this.state);
+        LoginActions.submitLoginForm(this.state);
         this.clearAndFocus();
     },
 
@@ -59,7 +58,7 @@ var Login = React.createClass({
                         onChange={this.handleChange}
                         placeholder="password" 
                     />
-                    <button type="submit" > Submit </button>
+                    <button > Submit </button>
                 </form>
             </div>
         );

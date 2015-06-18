@@ -21,21 +21,6 @@ var UserStore = {
         ]
     },
 
-    // Getter to the state
-    getIsLogged: function() {
-        return this._state.isLogged;
-    },
-    getInfoUser: function() {
-        return this._state.infoUser;
-    },
-    getInfoMachine: function() {
-        return this._state.infoMachine;
-    },
-
-    submitState(object) {
-        console.log(object);
-    },
-
     submitLoginForm: function(contentForm) {
         /*
         $.ajax({
@@ -52,7 +37,48 @@ var UserStore = {
         });
         */
        console.log('login submit done');
-    }
-};
+       console.log(contentForm);
+   },
 
+   //try to make it more general
+   gettingUserFromServer(uid) {
+       $.ajax({
+           url: 'API CALL', // /users/{uid}
+           dataType: 'json',
+           type:'GET',
+           data: uid,
+           success: function(User) {
+               this._state.infoUser = User;
+           },
+           error: function(xhr, status, err) {
+               console.error('api call', status, err.toString());
+           },
+       });
+   },
+
+    // Getter to the state
+    getIsLogged: function() {
+        return this._state.isLogged;
+    },
+    // Use by UserPage to get its state
+    getInfoUser: function() {
+        return this._state.infoUser;
+    },
+    // Use by UserPage to get its state
+    getInfoMachine: function() {
+        return this._state.infoMachine;
+    },
+
+    // Need to format the infoUser data correctly
+    // So it is recognize by the API
+    submitState(userstate) {
+        var loggedIn = this.state.isLogged;
+        console.log('from user store');
+        loggedIn = true;
+        console.log(loggedIn);
+        console.log(this.state.isLogged);
+        console.log(userstate);
+    }
+
+};
 module.exports = UserStore;

@@ -2,8 +2,8 @@ import UserStore from '../stores/UserStore'
 
 var UserActions = {
 
-    submitState(object){
-        UserStore.submitState(object);
+    submitState(userstate){
+        UserStore.submitState(userstate);
     }
 };
 

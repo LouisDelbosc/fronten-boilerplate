@@ -17,6 +17,7 @@
 #Need to be done:
 
 - making the loginsubmit do the outside request
+- make logout related stuff
 - check the actions to see if it's the same
 - making the action + store for the userPage
 - finishing the store with calling the API
