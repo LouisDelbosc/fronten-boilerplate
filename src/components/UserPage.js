@@ -13,7 +13,9 @@ var UserPage = React.createClass({
     // getting state from UserStore
     getInitialState: function() {
         var _infoUser = UserStore.getInfoUser();
+        console.log(_infoUser);
         var _infoMachine = UserStore.getInfoMachine();
+        console.log(_infoMachine);
         return {
             infoUser: _infoUser,
             infoMachine: _infoMachine
@@ -22,7 +24,8 @@ var UserPage = React.createClass({
 
     // Pass the responsabilité to the store via the action
     handleSubmit() {
-        console.log('UserPage');
+        console.log('USERPAGE MODAFOCKA');
+        console.log(this.state.infoUser);
         UserActions.submitState(this.state.infoUser);
     },
 

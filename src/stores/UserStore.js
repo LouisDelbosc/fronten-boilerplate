@@ -4,14 +4,6 @@ var UserStore = {
         failToLogin: false,
         isLogged: false,
         // everything @ get /users/{uid}
-        infoUser: { 
-            FirstName: 'jean jacques',
-            LastName: 'Rousseau',
-            UserName: 'jjr',
-            Email: 'jjr@jjr.com',
-            InvoiceAddr: 'add invoice',
-            ShipAddr: 'ship addr'
-        },
         rawInfoUser: {
             Id: 1,
             FirstName: "Regular",
@@ -76,9 +68,10 @@ var UserStore = {
         });
         */
        this._state.isLogged = true;
-        this.onChange();
+       this.onChange();
     },
 
+    // Logout from server
     logoutFromServer() {
         $.ajax({
             url: '/users/logout',
@@ -93,40 +86,50 @@ var UserStore = {
         });
     },
 
+    // Put the information from UserForm in the state 
+    // then send it to the server
     submitStateToServer(userState) {
-        formatUserState(userState); // TODO: create the function
+        this.formatUserStateToSendToServer(userState);
+        /*
         var _url = '/api/users/' + this._state.userID,
+
             dataToSend = this._state.infoUser,
             _type = 'PUT';
         getDataFromServer(_url, dataToSend, _type, function() {});
+        */
     },
 
     // To get the User information for the server after login in
     getUserStateFromServer(){
         //getting the initial set of data from the server with the UID
+        //CALL API
     },
 
+    // Change the input to match the rawInfoUser format
     formatUserStateToSendToServer(userState) {
-        for(data in userState) {
-            rawInfoUser[data] = userState[data];
+        for(var data in userState) {
+            this._state.rawInfoUser[data] = userState[data];
         }
     },
 
+    // return a light state with only the useful information
     formatUserStateToSendToUserPage() {
-        var infoWhichMatter = {
+        var infoWhichMatter = [
             'FirstName',
             'LastName', 
-            'UserName',
+            'Username',
             'Email',
             'InvoiceAddr',
             'ShipAddr'
-        }
+        ];
         var lightState = {};
-        for(name in infoWhichMatter) {
+        for(var index in infoWhichMatter) {
+            var name = infoWhichMatter[index];
             lightState[name] = this._state.rawInfoUser[name];
         }
+        console.log(lightState);
         return lightState;
-    }
+    },
 
     // Getter to the state
     getIsLogged: function() {
@@ -134,7 +137,8 @@ var UserStore = {
     },
     // Use by UserPage to get its state
     getInfoUser: function() {
-        return this._state.infoUser;
+        var lightState = this.formatUserStateToSendToUserPage();
+        return lightState;
     },
     // Use by UserPage to get its state
     getInfoMachine: function() {
