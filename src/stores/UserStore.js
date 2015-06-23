@@ -12,6 +12,23 @@ var UserStore = {
             InvoiceAddr: 'add invoice',
             ShipAddr: 'ship addr'
         },
+        rawInfoUser: {
+            Id: 1,
+            FirstName: "Regular",
+            LastName: "User",
+            Username: "user",
+            Email: "user@example.com",
+            InvoiceAddr: 0,
+            ShipAddr: 0,
+            ClientId: 0,
+            B2b: false,
+            Company: "",
+            VatUserId: "",
+            VatRate: 0,
+            UserRole: "",
+            Created: "0001-01-01T00:00:00Z",
+            Comments: ""    
+        },
         // everything @ get /users/{uid}/machinepermissions
         infoMachine: [
             {
@@ -28,6 +45,7 @@ var UserStore = {
     * _url: the url for the API call
     * nameState: the name of the state you'll modify
     * _data: the data you're sending
+
     * _type: methods you use ('GET', 'POST' etc ...)
     *
     */
@@ -87,6 +105,28 @@ var UserStore = {
     getUserStateFromServer(){
         //getting the initial set of data from the server with the UID
     },
+
+    formatUserStateToSendToServer(userState) {
+        for(data in userState) {
+            rawInfoUser[data] = userState[data];
+        }
+    },
+
+    formatUserStateToSendToUserPage() {
+        var infoWhichMatter = {
+            'FirstName',
+            'LastName', 
+            'UserName',
+            'Email',
+            'InvoiceAddr',
+            'ShipAddr'
+        }
+        var lightState = {};
+        for(name in infoWhichMatter) {
+            lightState[name] = this._state.rawInfoUser[name];
+        }
+        return lightState;
+    }
 
     // Getter to the state
     getIsLogged: function() {
