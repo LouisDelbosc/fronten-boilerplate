@@ -17,6 +17,6 @@ let routes = (
     </Route>
 );
 
-Router.run(routes, Router.HistoryLocalion, function(Handler) {
+Router.run(routes, Router.HashLocalion, function(Handler) {
     React.render(<Handler />, document.body);
 });

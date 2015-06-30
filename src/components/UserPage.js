@@ -24,8 +24,6 @@ var UserPage = React.createClass({
 
     // Pass the responsabilité to the store via the action
     handleSubmit() {
-        console.log('USERPAGE MODAFOCKA');
-        console.log(this.state.infoUser);
         UserActions.submitState(this.state.infoUser);
     },
 
