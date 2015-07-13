@@ -4,6 +4,7 @@ import MachineList from './MachineList';
 import Membership from './Membership';
 import UserActions from '../actions/UserActions';
 import UserStore from '../stores/UserStore'
+import {Navigation} from 'react-router';
 
 var UserPage = React.createClass({
 
