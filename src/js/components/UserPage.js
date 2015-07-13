@@ -7,40 +7,85 @@ import UserStore from '../stores/UserStore'
 
 var UserPage = React.createClass({
 
-    /*
-     * Getting stuff from OUTSIDE of the component
-     */
-    // getting state from UserStore
-    getInitialState: function() {
-        var _infoUser = UserStore.getInfoUser();
-        console.log(_infoUser);
-        var _infoMachine = UserStore.getInfoMachine();
-        console.log(_infoMachine);
-        return {
-            infoUser: _infoUser,
-            infoMachine: _infoMachine
-        };
-    },
+  /*
+   * to use transitionTo/replaceWith/redirect and some function related to the router
+   */
+  mixins: [ Navigation ],
 
-    // Pass the responsabilité to the store via the action
-    handleSubmit() {
-        UserActions.submitState(this.state.infoUser);
-    },
+  /*
+   * If not logged then redirect to the login page
+   */
+  statics: {
+    willTransitionTo(transition) {
+      if(!UserStore.getIsLogged()) {
+        transition.redirect('login');
+      }
+    }
+  },
 
-    /*
-     * INSIDE the component
-     */
-    // Change the state of the input related
-    handleChangeForm(event) {
-        // Create a temporary state to replace the old one
-        var tmpState = this.state.infoUser;
-        tmpState[event.target.id] = event.target.value;
-        this.setState({
-            infoUser: tmpState
-        });
-    },
+  /*
+   * Fetching the user state from the store
+   */
+  getInitialState() {
+    return {
+      infoUser: UserStore.getInfoUser(),
+      infoMachine: UserStore.getInfoMachine(),
+      infoBill: UserStore.getInfoBill(),
+      infoMembership: UserStore.getMembership()
+    };
+  },
 
+  /*
+   * Submit the user information to the store via the action
+   */
+  handleSubmit() {
+    UserActions.submitState(this.state.infoUser);
+  },
 
+  /*
+   * When a change happend in the form:
+   * @event: the event which occured
+   * change the state to be coherent with the input values
+   */
+  handleChangeForm(event) {
+    // Create a temporary state to replace the old one
+    var tmpState = this.state.infoUser;
+    tmpState[event.target.id] = event.target.value;
+    this.setState({
+      infoUser: tmpState
+    });
+  },
+
+  /*
+   * Send an action to update the password
+   * @password: your new password
+   */
+  updatePassword(password) {
+    UserActions.updatePassword(password);
+  },
+
+  /*
+   * When logout, redirect to the login page
+   */
+  onChangeLogout() {
+    if( !UserStore.getIsLogged() ){
+      this.replaceWith('login');
+    }
+  },
+
+  /*
+   * To synchronize the logout call with the logout event
+   */
+  componentDidMount() {
+    UserStore.onChangeLogout = this.onChangeLogout;
+  },
+
+  /*
+   * Render:
+   *  - UserForm: form to update the user information
+   *  - MachineList: machines the user can access
+   *  - Membership: membership the user subscribe
+   */
     render() {
         return (
             <div className="userPage" >
