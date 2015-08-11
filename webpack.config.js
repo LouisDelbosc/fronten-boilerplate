@@ -1,23 +1,24 @@
 var webpack = require('webpack');
 
-function getOutputDevOrProd() {
+function getEntrySources(sources) {
   if(process.env.NODE_ENV !== 'production') {
-    var outputDir = '/dev';
-  } else {
-    var outputDir = '/prod';
+    sources.push('webpack/hot/only-dev-server');
+    sources.push('webpack-dev-server/client?http://localhost:8080');
   }
-  return outputDir;
+  return sources;
 }
 
 module.exports = {
-  entry: './src/js/main.js',
+  entry: {
+    helloWorld: getEntrySources(['./src/js/main.js'])
+  },
   output: {
-    path: __dirname + getOutputDevOrProd(),
+    path: __dirname + '/dist',
     filename: 'bundle.js'
   },
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/,  loader: 'babel' },
+      { test: /\.js$/, exclude: /node_modules/,  loaders: [ 'react-hot', 'babel' ] },
       { test: /\.css/, loader: "style!css" },
       { test: /\.less$/, loader: "style!css!less" },
       { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },

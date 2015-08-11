@@ -1,78 +1,28 @@
 0 info it worked if it ends with ok
 1 verbose cli [ '/home/moi/.nvm/v0.10.39/bin/node',
 1 verbose cli   '/home/moi/.nvm/v0.10.39/bin/npm',
-1 verbose cli   'prune' ]
+1 verbose cli   'start' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.39
-4 warn package.json webpack-test@1.0.0 No repository field.
-5 verbose node_modules/expect unbuild
-6 verbose node_modules/karma-firefox-launcher unbuild
-7 verbose node_modules/karma-sourcemap-loader unbuild
-8 verbose node_modules/karma-mocha unbuild
-9 verbose node_modules/bootstrap unbuild
-10 verbose node_modules/flux unbuild
-11 verbose node_modules/reqwest unbuild
-12 verbose node_modules/when unbuild
-13 verbose node_modules/karma-cli unbuild
-14 verbose node_modules/jwt-decode unbuild
-15 verbose node_modules/react-mixin unbuild
-16 verbose node_modules/karma-webpack unbuild
-17 info preuninstall expect@1.6.0
-18 info preuninstall karma-firefox-launcher@0.1.6
-19 info preuninstall karma-sourcemap-loader@0.3.5
-20 info preuninstall karma-mocha@0.2.0
-21 info preuninstall bootstrap@3.3.4
-22 info preuninstall flux@2.0.3
-23 info preuninstall reqwest@1.1.5
-24 info preuninstall when@3.7.3
-25 info preuninstall karma-cli@0.1.0
-26 info preuninstall jwt-decode@1.1.1
-27 info preuninstall react-mixin@1.3.1
-28 info preuninstall karma-webpack@1.5.1
-29 info uninstall expect@1.6.0
-30 info uninstall karma-firefox-launcher@0.1.6
-31 info uninstall karma-sourcemap-loader@0.3.5
-32 info uninstall karma-mocha@0.2.0
-33 info uninstall bootstrap@3.3.4
-34 info uninstall flux@2.0.3
-35 info uninstall reqwest@1.1.5
-36 info uninstall when@3.7.3
-37 info uninstall karma-cli@0.1.0
-38 info uninstall jwt-decode@1.1.1
-39 info uninstall react-mixin@1.3.1
-40 info uninstall karma-webpack@1.5.1
-41 verbose true,/home/moi/Application/frontend-boilerplate/node_modules,/home/moi/Application/frontend-boilerplate/node_modules unbuild expect@1.6.0
-42 info postuninstall expect@1.6.0
-43 verbose true,/home/moi/Application/frontend-boilerplate/node_modules,/home/moi/Application/frontend-boilerplate/node_modules unbuild karma-firefox-launcher@0.1.6
-44 info postuninstall karma-firefox-launcher@0.1.6
-45 verbose true,/home/moi/Application/frontend-boilerplate/node_modules,/home/moi/Application/frontend-boilerplate/node_modules unbuild karma-sourcemap-loader@0.3.5
-46 info postuninstall karma-sourcemap-loader@0.3.5
-47 verbose true,/home/moi/Application/frontend-boilerplate/node_modules,/home/moi/Application/frontend-boilerplate/node_modules unbuild karma-mocha@0.2.0
-48 info postuninstall karma-mocha@0.2.0
-49 verbose true,/home/moi/Application/frontend-boilerplate/node_modules,/home/moi/Application/frontend-boilerplate/node_modules unbuild bootstrap@3.3.4
-50 info postuninstall bootstrap@3.3.4
-51 verbose true,/home/moi/Application/frontend-boilerplate/node_modules,/home/moi/Application/frontend-boilerplate/node_modules unbuild flux@2.0.3
-52 info postuninstall flux@2.0.3
-53 verbose true,/home/moi/Application/frontend-boilerplate/node_modules,/home/moi/Application/frontend-boilerplate/node_modules unbuild reqwest@1.1.5
-54 info postuninstall reqwest@1.1.5
-55 verbose true,/home/moi/Application/frontend-boilerplate/node_modules,/home/moi/Application/frontend-boilerplate/node_modules unbuild when@3.7.3
-56 info postuninstall when@3.7.3
-57 verbose true,/home/moi/Application/frontend-boilerplate/node_modules,/home/moi/Application/frontend-boilerplate/node_modules unbuild karma-cli@0.1.0
-58 verbose /home/moi/Application/frontend-boilerplate/node_modules/.bin,[object Object] binRoot
-59 verbose true,/home/moi/Application/frontend-boilerplate/node_modules,/home/moi/Application/frontend-boilerplate/node_modules unbuild jwt-decode@1.1.1
-60 info postuninstall jwt-decode@1.1.1
-61 verbose true,/home/moi/Application/frontend-boilerplate/node_modules,/home/moi/Application/frontend-boilerplate/node_modules unbuild react-mixin@1.3.1
-62 info postuninstall react-mixin@1.3.1
-63 verbose true,/home/moi/Application/frontend-boilerplate/node_modules,/home/moi/Application/frontend-boilerplate/node_modules unbuild karma-webpack@1.5.1
-64 info postuninstall karma-webpack@1.5.1
-65 error Refusing to delete: /home/moi/Application/frontend-boilerplate/node_modules/.bin/karma not in /home/moi/Application/frontend-boilerplate/node_modules/karma-cli
-File exists: /home/moi/Application/frontend-boilerplate/node_modules/.bin/karma
-Move it away, and try again.
-66 error System Linux 3.13.0-57-generic
-67 error command "/home/moi/.nvm/v0.10.39/bin/node" "/home/moi/.nvm/v0.10.39/bin/npm" "prune"
-68 error cwd /home/moi/Application/frontend-boilerplate
-69 error node -v v0.10.39
-70 error npm -v 1.4.28
-71 error path /home/moi/Application/frontend-boilerplate/node_modules/.bin/karma
-72 error code EEXIST
-73 verbose exit [ 1, true ]
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart webpack-test@1.0.0
+6 info start webpack-test@1.0.0
+7 verbose unsafe-perm in lifecycle true
+8 info webpack-test@1.0.0 Failed to exec start script
+9 error webpack-test@1.0.0 start: `webpack-dev-server --hot --watch --progress --colors`
+9 error Exit status 8
+10 error Failed at the webpack-test@1.0.0 start script.
+10 error This is most likely a problem with the webpack-test package,
+10 error not with npm itself.
+10 error Tell the author that this fails on your system:
+10 error     webpack-dev-server --hot --watch --progress --colors
+10 error You can get their info via:
+10 error     npm owner ls webpack-test
+10 error There is likely additional logging output above.
+11 error System Linux 3.13.0-61-generic
+12 error command "/home/moi/.nvm/v0.10.39/bin/node" "/home/moi/.nvm/v0.10.39/bin/npm" "start"
+13 error cwd /home/moi/Application/frontend-boilerplate
+14 error node -v v0.10.39
+15 error npm -v 1.4.28
+16 error code ELIFECYCLE
+17 verbose exit [ 1, true ]
